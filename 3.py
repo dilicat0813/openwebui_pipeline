@@ -30,14 +30,14 @@ class Pipeline:
         print(f"pipe:{__name__}")
         
         from duckduckgo_search import DDGS
-        results = DDGS().text(user_message, max_results=10)
+        results = DDGS().text(user_message, max_results=20)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
         MODEL = "aya:35b"
 
         if "user" in body:
             print("######################################")
             print(f'# User: {body["user"]["name"]} ({body["user"]["id"]})')
-            print(f"# Message: {user_message}. 이 질문에 답을 하기 위해, 다음의 결과 중 가장 관련성 있는 정보만 참조하세요. {results}")
+            print(f"# Message: {user_message}. 이 질문에 답을 하기 위해, 먼저 질문의 요지를 말한 이후 다음의 결과 중 가장 관련성 있는 정보만 참조하여 답해주세요. \n {results}")
             print("######################################")
 
         try:
