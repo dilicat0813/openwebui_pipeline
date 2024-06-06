@@ -30,7 +30,7 @@ class Pipeline:
         print(f"pipe:{__name__}")
         
         from duckduckgo_search import DDGS
-        results = DDGS().text(user_message, max_results=10)
+        results = DDGS().text(user_message, max_results=5)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
         MODEL = "aya:latest"
 
