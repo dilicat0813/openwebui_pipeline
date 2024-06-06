@@ -6,7 +6,7 @@ import os
 
 
 class Pipeline:
-    class Valves(BaseModel):
+    class Vallves(BaseModel):
         pass
 
     def __init__(self):
@@ -18,13 +18,9 @@ class Pipeline:
         self.name = "Wikipedia Pipeline"
 
         # Initialize rate limits
-        # self.valves = self.Valves(**{"OPENAI_API_KEY": os.getenv("OPENAI_API_KEY", "")})
-                # Initialize
-        self.valves = self.Valves(
-            **{
-                "pipelines": ["*"],  # Connect to all pipelines
-            }
-        )
+        self.valves = self.Valves(**{"OPENAI_API_KEY": os.getenv("OPENAI_API_KEY", "")})
+
+
 
     async def on_startup(self):
         # This function is called when the server is started.
@@ -71,5 +67,5 @@ class Pipeline:
                         context = pages[page]["extract"] + "\n"
                     else:
                         context = context + pages[page]["extract"] + "\n"
-
+                print(context)
             return context if context else "No information found"
