@@ -19,6 +19,12 @@ class Pipeline:
 
         # Initialize rate limits
         # self.valves = self.Valves(**{"OPENAI_API_KEY": os.getenv("OPENAI_API_KEY", "")})
+                # Initialize
+        self.valves = self.Valves(
+            **{
+                "pipelines": ["*"],  # Connect to all pipelines
+            }
+        )
 
     async def on_startup(self):
         # This function is called when the server is started.
