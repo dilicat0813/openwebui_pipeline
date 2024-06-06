@@ -10,7 +10,7 @@ class Pipeline:
         # The identifier must be unique across all pipelines.
         # The identifier must be an alphanumeric string that can include underscores or hyphens. It cannot contain spaces, special characters, slashes, or backslashes.
         # self.id = "ollama_pipeline"
-        self.name = "DDGS&Aya 8B Pipeline"
+        self.name = "DDGS&Aya 35B Pipeline"
         pass
 
     async def on_startup(self):
@@ -32,7 +32,7 @@ class Pipeline:
         from duckduckgo_search import DDGS
         results = DDGS().text(user_message, max_results=10)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
-        MODEL = "aya:latest"
+        MODEL = "aya:35b"
 
         if "user" in body:
             print("######################################")
