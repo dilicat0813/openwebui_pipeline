@@ -34,6 +34,8 @@ class Pipeline:
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
         MODEL = "aya:35b"
         user_message=f"{user_message} 이 질문에 답을 하기 위해, 다음의 리스트 중 가장 관련성 있는 내용만을 반드시 참조하여 답해주세요. \n {results} "
+        body["messages"][0]["title"]=user_message
+        
         if "user" in body:
             print("######################################")
             print(f'# User: {body["user"]["name"]} ({body["user"]["id"]})')
