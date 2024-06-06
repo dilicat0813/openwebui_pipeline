@@ -28,14 +28,16 @@ class Pipeline:
     ) -> Union[str, Generator, Iterator]:
         # This is where you can add your custom pipelines like RAG.
         print(f"pipe:{__name__}")
-
+        
+        from duckduckgo_search import DDGS
+        results = DDGS().text(user_message, max_results=5)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
         MODEL = "aya:latest"
 
         if "user" in body:
             print("######################################")
             print(f'# User: {body["user"]["name"]} ({body["user"]["id"]})')
-            print(f"# Message: {user_message}")
+            print(f"# Message: {user_message} 이 질문에 답을 하기 위해, 다음의 결과를 참조하세요. {results}")
             print("######################################")
 
         try:
