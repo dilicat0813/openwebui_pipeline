@@ -16,6 +16,11 @@ class Pipeline:
         # The identifier must be an alphanumeric string that can include underscores or hyphens. It cannot contain spaces, special characters, slashes, or backslashes.
         # self.id = "ollama_pipeline"
         self.name = "DDGS&Aya 8B Pipeline"
+        self.valves = self.Valves(
+            **{
+                "MODEL": "aya:latest"
+            }
+        )
         pass
 
     async def on_startup(self):
