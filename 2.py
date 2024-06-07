@@ -1,9 +1,14 @@
 from typing import List, Union, Generator, Iterator
 from schemas import OpenAIChatMessage
 import requests
+from pydantic import BaseModel
 
 
 class Pipeline:
+    class Valves(BaseModel):
+        MODEL: str = "aya:latest"
+        
+        pass    
     def __init__(self):
         # Optionally, you can set the id and name of the pipeline.
         # Best practice is to not specify the id so that it can be automatically inferred from the filename, so that users can install multiple versions of the same pipeline.
@@ -32,9 +37,9 @@ class Pipeline:
         from duckduckgo_search import DDGS
         results = DDGS().text(user_message, max_results=5)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
-        MODEL = "aya:latest"
+        MODEL = self.Valves.MODEL
         
-        user_message=f"{user_message}. \n 이 질문에 답을 하기 위해, 다음의 리스트 중 가장 관련성 있는 내용만을 반드시 참조하여 답해주세요. \n {results} "
+        user_message=f"{user_message}. \n 이 질문에 답을 하기 위해, 질문과 연관성이 높은 사실만을 참조하여 답해주세요. \n {results} "
         body["messages"][0]["title"]=user_message
         
         if "user" in body:
