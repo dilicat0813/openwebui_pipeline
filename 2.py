@@ -33,11 +33,14 @@ class Pipeline:
         results = DDGS().text(user_message, max_results=5)
         OLLAMA_BASE_URL = "http://192.168.0.57:11434"
         MODEL = "aya:latest"
-
+        
+        user_message=f"{user_message}. \n 이 질문에 답을 하기 위해, 다음의 리스트 중 가장 관련성 있는 내용만을 반드시 참조하여 답해주세요. \n {results} "
+        body["messages"][0]["title"]=user_message
+        
         if "user" in body:
             print("######################################")
             print(f'# User: {body["user"]["name"]} ({body["user"]["id"]})')
-            print(f"# Message: {user_message}. 이 질문에 답을 하기 위해, 다음의 결과 중 가장 관련성 있는 정보만 참조하세요. {results}")
+            print(f"# Message: {user_message}.")
             print("######################################")
 
         try:
